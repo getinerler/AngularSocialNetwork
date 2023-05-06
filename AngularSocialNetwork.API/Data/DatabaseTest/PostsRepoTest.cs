@@ -14,7 +14,7 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
               join post in DatabaseContextTest.Posts on feed.PostId equals post.PostId
               join user in DatabaseContextTest.Users on post.UserId equals user.UserId
 
-              where feed.UserId == userId
+              where userId == -1 || feed.UserId == userId
 
               orderby post.CreatedDate descending
 
