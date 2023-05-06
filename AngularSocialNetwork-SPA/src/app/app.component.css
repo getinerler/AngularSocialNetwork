@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    height: 100%;
+}
+
+nav {
+    flex-basis: 20%;
+    height: 100vh;
+    position: sticky;
+    top: 0px;
+    background-color: darkred;
+    color: white;
+    padding: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    margin-bottom: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}

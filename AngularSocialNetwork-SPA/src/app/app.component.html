@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="navContainer">
+    <nav *ngIf="!loggedIn()">
+      <a [routerLink]="['/login']">Log In</a>
+    </nav>
+    <nav *ngIf="loggedIn()">
+      <ul>
+        <li><a [routerLink]="['/home']">Home</a></li>
+        <li><a [routerLink]="['/profile']">Profile</a></li>
+        <li><a [routerLink]="['/notifications']">Notifications</a></li>
+        <a (click)="logout()">Log Out</a>
+      </ul>
+    </nav>
+  </div>
+  <router-outlet></router-outlet>
+</div>

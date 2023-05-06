@@ -1,0 +1,15 @@
+<header>
+  <h1>Notifications</h1>
+</header>
+<div id="notifications-container">
+  <ul id="notification-list">
+    <li class="notification" *ngFor="let notification of notifications">
+      <span class="notification-time">
+        {{notification.date | date: 'MMM d, y, h:mm:ss a'}}
+      </span>
+      <span class="notification-message">
+        {{notification.text}}
+      </span>
+    </li>
+  </ul>
+</div>
