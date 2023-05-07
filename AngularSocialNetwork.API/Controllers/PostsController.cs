@@ -15,7 +15,7 @@ namespace AngularSocialNetwork.API.Controllers
             _postRepo = postRepo;
         }
 
-        [HttpGet(Name = "GetMessages")]
+        [HttpGet(Name = "GetPosts")]
         public IEnumerable<PostForFeedDto> Get(int? userId)
         {
             if (!userId.HasValue)
