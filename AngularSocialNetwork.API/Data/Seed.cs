@@ -296,12 +296,14 @@ namespace AngularSocialNetwork.API.Data
 
         private void SeedComments()
         {
-            int counter = 1;
+            int commentCounter = 1;
+            int commentCounterCounter = 1;
 
             List<Post> posts = _repo.GetPosts();
             List<User> users = _repo.GetUsers();
 
             List<Comment> comments = new List<Comment>(posts.Count * 3);
+            List<CommentCount> commentCounts = new List<CommentCount>(posts.Count * 3 * 3);
 
             foreach (Post post in posts)
             {
@@ -310,35 +312,36 @@ namespace AngularSocialNetwork.API.Data
                     .Select(x => x.UserId)
                     .ToArray();
 
-                comments.Add(new Comment()
+                for (int i = 0; i < 3; i++)
                 {
-                    CommentId = counter++,
-                    PostId = post.PostId,
-                    UserId = userIds[0],
-                    Text = "🙂",
-                    CreatedDate = post.CreatedDate.AddMinutes(5)
-                });
+                    comments.Add(new Comment()
+                    {
+                        CommentId = commentCounter++,
+                        PostId = post.PostId,
+                        UserId = userIds[i],
+                        Text = i == 0 ? "🙂" : i == 1 ? "💯" : "👏👏👏",
+                        CreatedDate = post.CreatedDate.AddMinutes(i * 5 + 5)
+                    });
 
-                comments.Add(new Comment()
-                {
-                    CommentId = counter++,
-                    PostId = post.PostId,
-                    UserId = userIds[1],
-                    Text = "💯",
-                    CreatedDate = post.CreatedDate.AddMinutes(10)
-                });
+                    foreach (int j in userIds)
+                    {
+                        CommentCount newCount = new CommentCount()
+                        {
+                            CommentCountId = commentCounterCounter++,
+                            PostId = post.PostId,
+                            CommentId = commentCounter,
+                            UserId = j,
+                            Liked = j % 2 == 0,
+                            Reweeted = j % 2 != 0
+                        };
 
-                comments.Add(new Comment()
-                {
-                    CommentId = counter++,
-                    PostId = post.PostId,
-                    UserId = userIds[2],
-                    Text = "👏👏👏",
-                    CreatedDate = post.CreatedDate.AddMinutes(15)
-                });
+                        commentCounts.Add(newCount);
+                    }
+                }
             };
 
             _repo.AddComments(comments);
+            _repo.AddCommentCounts(commentCounts);
         }
 
         private void CreatePasswordHash(

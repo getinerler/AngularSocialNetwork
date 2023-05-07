@@ -5,6 +5,7 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
     public class DatabaseContextTest
     {
         public static List<Comment> Comments { get; set; } = new List<Comment>();
+        public static List<CommentCount> CommentCounts { get; set; } = new List<CommentCount>();
         public static List<Conversation> Conversations { get; set; } = new List<Conversation>();
         public static List<Feed> Feeds { get; set; } = new List<Feed>();
         public static List<Follower> Followers { get; set; } = new List<Follower>();

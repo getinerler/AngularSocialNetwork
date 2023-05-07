@@ -14,5 +14,6 @@ namespace AngularSocialNetwork.API.Data
         void AddNotifications(List<Notification> notifications);
         List<Follower> GetFollowers();
         void AddComments(List<Comment> comments);
+        void AddCommentCounts(List<CommentCount> commentCounts);
     }
 }
