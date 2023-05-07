@@ -11,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<Seed>();
 builder.Services.AddTransient<IAuthRepo, AuthRepoTest>();
+builder.Services.AddTransient<ICommentsRepo, CommentsRepoTest>();
 builder.Services.AddTransient<INotificationsRepo, NotificationsRepoTest>();
 builder.Services.AddTransient<IPostsRepo, PostsRepoTest>();
 builder.Services.AddTransient<ISeedRepo, SeedRepoTest>();

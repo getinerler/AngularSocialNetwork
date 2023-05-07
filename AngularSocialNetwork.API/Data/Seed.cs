@@ -23,6 +23,7 @@ namespace AngularSocialNetwork.API.Data
                 SeedPosts();
                 SeedFeeds();
                 SeedNotifications();
+                SeedComments();
             }
         }
 
@@ -291,6 +292,53 @@ namespace AngularSocialNetwork.API.Data
             }
 
             _repo.AddNotifications(notifications);
+        }
+
+        private void SeedComments()
+        {
+            int counter = 1;
+
+            List<Post> posts = _repo.GetPosts();
+            List<User> users = _repo.GetUsers();
+
+            List<Comment> comments = new List<Comment>(posts.Count * 3);
+
+            foreach (Post post in posts)
+            {
+                int[] userIds = users
+                    .Where(x => x.UserId != post.UserId)
+                    .Select(x => x.UserId)
+                    .ToArray();
+
+                comments.Add(new Comment()
+                {
+                    CommentId = counter++,
+                    PostId = post.PostId,
+                    UserId = userIds[0],
+                    Text = "🙂",
+                    CreatedDate = post.CreatedDate.AddMinutes(5)
+                });
+
+                comments.Add(new Comment()
+                {
+                    CommentId = counter++,
+                    PostId = post.PostId,
+                    UserId = userIds[1],
+                    Text = "💯",
+                    CreatedDate = post.CreatedDate.AddMinutes(10)
+                });
+
+                comments.Add(new Comment()
+                {
+                    CommentId = counter++,
+                    PostId = post.PostId,
+                    UserId = userIds[2],
+                    Text = "👏👏👏",
+                    CreatedDate = post.CreatedDate.AddMinutes(15)
+                });
+            };
+
+            _repo.AddComments(comments);
         }
 
         private void CreatePasswordHash(

@@ -48,5 +48,10 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
         {
             return DatabaseContextTest.Users.ToList();
         }
+
+        public void AddComments(List<Comment> comments)
+        {
+            DatabaseContextTest.Comments.AddRange(comments);
+        }
     }
 }
