@@ -14,5 +14,7 @@ namespace AngularSocialNetwork.API.Dtos.Posts
         public int CommentCount { get; set; }
         public DateTime Date { get; set; }
         public bool Liked { get; set; }
+        public bool Reposted { get; set; }
+        public List<PostForFeedDto> Comments { get; set; }
     }
 }

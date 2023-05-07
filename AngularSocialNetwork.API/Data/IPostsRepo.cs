@@ -5,6 +5,7 @@ namespace AngularSocialNetwork.API.Data
     public interface IPostsRepo
     {
         List<PostForFeedDto> GetPosts(int userId);
+        PostForFeedDto GetPostDetailed(int feedId);
         void SaveNewPost(PostAddDto postAddDto);
     }
 }

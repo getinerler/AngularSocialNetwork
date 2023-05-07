@@ -15,7 +15,7 @@ namespace AngularSocialNetwork.API.Controllers
             _postRepo = postRepo;
         }
 
-        [HttpGet(Name = "GetPosts")]
+        [HttpGet]
         public IEnumerable<PostForFeedDto> Get(int? userId)
         {
             if (!userId.HasValue)
@@ -24,6 +24,23 @@ namespace AngularSocialNetwork.API.Controllers
             }
 
             return _postRepo.GetPosts(userId ?? -1);
+        }
+
+        [HttpGet("GetPostDetails")]
+        public IActionResult GetPostDetails(int? feedId)
+        {
+            try
+            {
+                if (!feedId.HasValue)
+                {
+                    throw new Exception("No feed id.");
+                }
+                return Ok(_postRepo.GetPostDetailed(feedId.Value));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost("SaveNewPost")]
