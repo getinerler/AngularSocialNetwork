@@ -1,49 +1,6 @@
-
-
-
-
 main {
     flex-grow: 1;
     padding: 20px;
-}
-
-.post {
-    /* background-color: #F5F8FA;*/
-    border: 1px solid darkred;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-    width: 75%;
-}
-
-.post-header {
-    display: flex;
-    align-items: center;
-}
-
-.post-header img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.post-content {
-    margin-top:10px;
-    font-size: 16px;
-}
-
-.post-counts {
-    display: flex;
-    height: 20px;
-    margin-top:20px;
-}
-
-.post-counts-item {
-    width: 55px;
-    height: 20px;
-    display: flex;
-    margin-right: 20px;
 }
 
 .new-post {

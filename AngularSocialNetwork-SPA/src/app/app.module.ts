@@ -9,16 +9,18 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { PostComponent } from './post/post.component';
 
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     LoginComponent,
     NotificationsComponent,
     ProfileComponent,
-    HomeComponent
-  ],
+    HomeComponent,
+      PostComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

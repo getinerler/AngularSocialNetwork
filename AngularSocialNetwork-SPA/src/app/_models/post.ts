@@ -10,4 +10,6 @@ export interface Post {
     retweetCount: number;
     commentCount: number;
     liked: boolean;
+
+    comments: Post[];
   }
