@@ -7,6 +7,6 @@ namespace AngularSocialNetwork.API.Models
         public int CommentId { get; set; }
         public int UserId { get; set; }
         public bool Liked { get; set; }
-        public bool Reweeted { get; set; }
+        public bool Reposted { get; set; }
     }
 }

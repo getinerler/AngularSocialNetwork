@@ -243,9 +243,9 @@ namespace AngularSocialNetwork.API.Data
                         FeedId = counter++,
                         UserId = user.UserId,
                         PostId = post.PostId,
-                        Liked = counter % 2 == 0
+                        Liked = counter % 2 == 0,
+                        Reposted = counter % 2 == 1
                     };
-
                     feeds.Add(feed);
                 }
             }
@@ -329,10 +329,10 @@ namespace AngularSocialNetwork.API.Data
                         {
                             CommentCountId = commentCounterCounter++,
                             PostId = post.PostId,
-                            CommentId = commentCounter,
+                            CommentId = commentCounter - 1,
                             UserId = j,
                             Liked = j % 2 == 0,
-                            Reweeted = j % 2 != 0
+                            Reposted = j % 2 == 1
                         };
 
                         commentCounts.Add(newCount);
