@@ -24,6 +24,10 @@ export class PostService {
     }
   }
 
+  getPostDetail(feedId?: number): Observable<Post> {
+    return this.http.get<Post>(this.baseUrl + 'getPostDetails/?feedId=' + feedId);
+  }
+
   sendPost(text: string): Observable<any> {
     let user: User = JSON.parse(localStorage.getItem("user")?.toString() ?? "{}");
     let model = { userId: user.id, text: text };

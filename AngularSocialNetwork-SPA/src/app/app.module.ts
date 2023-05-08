@@ -10,17 +10,19 @@ import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './post/post.component';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     LoginComponent,
     NotificationsComponent,
     ProfileComponent,
     HomeComponent,
-      PostComponent
-   ],
+    PostComponent,
+    PostDetailComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

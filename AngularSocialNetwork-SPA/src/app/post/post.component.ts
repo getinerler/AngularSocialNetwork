@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../_models/post';
 import { PostService } from '../_services/post.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -10,10 +11,13 @@ import { PostService } from '../_services/post.service';
 export class PostComponent implements OnInit {
 
   @Input() post: Post = null!;
-  
-  constructor(postService: PostService) { }
+
+  constructor(private router: Router, private postService: PostService) { }
 
   ngOnInit() {
   }
 
+  getDetail(id: number) {
+    this.router.navigate(['/postDetail', id]);
+  }
 }

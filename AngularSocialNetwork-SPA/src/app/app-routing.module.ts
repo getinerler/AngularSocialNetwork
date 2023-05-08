@@ -4,10 +4,11 @@ import { HomeComponent } from 'src/app/home/home.component';
 import { LoginComponent } from 'src/app/login/login.component';
 import { NotificationsComponent } from 'src/app/notifications/notifications.component';
 import { ProfileComponent } from 'src/app/profile/profile.component';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent
   },
   {
@@ -21,7 +22,11 @@ const routes: Routes = [
   {
     path: 'notifications',
     component: NotificationsComponent
-  }
+  },
+  {
+    path: "postDetail/:id",
+    component: PostDetailComponent
+  },
 ];
 
 @NgModule({
