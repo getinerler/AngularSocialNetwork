@@ -30,7 +30,7 @@ export class PostService {
 
   sendPost(text: string): Observable<any> {
     let user: User = JSON.parse(localStorage.getItem("user")?.toString() ?? "{}");
-    let model = { userId: user.id, text: text };
+    let model = { id: user.id, text: text };
     return this.http.post(this.baseUrl + 'saveNewPost/', model);
   }
 
@@ -40,7 +40,6 @@ export class PostService {
       userId: user.id, 
       feedId: id 
     };
-    alert(JSON.stringify(model));
     return this.http.post<number>(this.baseUrl + 'likePost/', model);
   }
 }

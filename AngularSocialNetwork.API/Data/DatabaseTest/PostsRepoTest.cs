@@ -125,7 +125,8 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                     FeedId = DatabaseContextTest.Feeds.Max(x => x.FeedId) + 1,
                     UserId = follower.FollowerId,
                     PostId = post.PostId,
-                    Liked = false
+                    Liked = false,
+                    Reposted = false
                 };
                 DatabaseContextTest.Feeds.Add(feed);
             }
@@ -135,7 +136,8 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                 FeedId = DatabaseContextTest.Feeds.Max(x => x.FeedId) + 1,
                 UserId = postAddDto.Id,
                 PostId = post.PostId,
-                Liked = false
+                Liked = false,
+                Reposted = false
             };
             DatabaseContextTest.Feeds.Add(userFeed);
         }

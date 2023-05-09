@@ -58,7 +58,7 @@ namespace AngularSocialNetwork.API.Controllers
                     throw new Exception("No feed id.");
                 }
 
-                return Ok( _postRepo.LikePost(req));
+                return Ok(_postRepo.LikePost(req));
             }
             catch (Exception ex)
             {
