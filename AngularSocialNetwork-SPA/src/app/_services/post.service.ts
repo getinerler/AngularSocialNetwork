@@ -40,6 +40,7 @@ export class PostService {
       userId: user.id, 
       feedId: id 
     };
+    alert(JSON.stringify(model));
     return this.http.post<number>(this.baseUrl + 'likePost/', model);
   }
 }

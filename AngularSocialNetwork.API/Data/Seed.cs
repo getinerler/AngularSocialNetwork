@@ -223,16 +223,19 @@ namespace AngularSocialNetwork.API.Data
 
             foreach (User user in users)
             {
-                List<Follower> userFollowers = followers
+                List<Follower> userFolloweds = followers
                     .Where(x => x.FollowerId == user.UserId)
                     .ToList();
 
-                int[] followeeIds = userFollowers
+                int[] followedIds = userFolloweds
                     .Select(x => x.FolloweeId)
+                    .ToArray()
+                    //Send feed to the user too.
+                    .Union(new int[] { user.UserId })
                     .ToArray();
 
                 List<Post> userPosts = posts
-                    .Where(x => followeeIds.Contains(x.UserId))
+                    .Where(x => followedIds.Contains(x.UserId))
                     .OrderByDescending(x => x.CreatedDate)
                     .ToList();
 

@@ -145,13 +145,17 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
             Feed feed = DatabaseContextTest.Feeds.FirstOrDefault(x =>
                 x.FeedId == req.FeedId &&
                 x.UserId == req.UserId);
-
-            Post post = DatabaseContextTest.Posts.FirstOrDefault(x => x.PostId == feed.PostId);
-
             if (feed == null)
             {
                 throw new Exception("No feed found.");
             }
+
+            Post post = DatabaseContextTest.Posts.FirstOrDefault(x => x.PostId == feed.PostId);
+            if (post == null)
+            {
+                throw new Exception("No post found.");
+            }
+
 
             if (feed.Liked)
             {

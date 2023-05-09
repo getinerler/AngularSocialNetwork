@@ -33,27 +33,34 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
         public List<PostForFeedDto> GetUserPosts(int userId)
         {
             List<PostForFeedDto> list = (
-            from post in DatabaseContextTest.Posts
-            join user in DatabaseContextTest.Users on post.UserId equals user.UserId
+                from feed in DatabaseContextTest.Feeds
+                join post in DatabaseContextTest.Posts on feed.PostId equals post.PostId
+                join user in DatabaseContextTest.Users on post.UserId equals user.UserId
 
-            where post.UserId == userId
+                where post.UserId == userId
+                where feed.UserId == userId
 
-            select new PostForFeedDto()
-            {
-                Id = post.PostId,
-                UserId = post.UserId,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Username = user.Username,
-                Text = post.Text,
-                Photo = UrlCreate.GetPhotoUrl(user.ProfilePhoto),
-                LikeCount = post.LikeCount,
-                RetweetCount = post.RetweetCount,
-                CommentCount = post.CommentCount,
-                Date = post.CreatedDate,
-            })
-            .OrderByDescending(x => x.Date)
-            .ToList();
+                orderby post.CreatedDate descending
+
+                select new PostForFeedDto()
+                {
+                    Id = feed.FeedId,
+                    UserId = post.UserId,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Username = user.Username,
+                    Text = post.Text,
+                    Photo = UrlCreate.GetPhotoUrl(user.ProfilePhoto),
+                    LikeCount = post.LikeCount,
+                    RetweetCount = post.RetweetCount,
+                    CommentCount = post.CommentCount,
+                    Date = post.CreatedDate,
+                    Liked = feed.Liked,
+                    Reposted = feed.Reposted
+                })
+                .Skip(0)
+                .Take(10)
+                .ToList();
 
             return list;
         }
