@@ -33,4 +33,13 @@ export class PostService {
     let model = { userId: user.id, text: text };
     return this.http.post(this.baseUrl + 'saveNewPost/', model);
   }
+
+  likePost(id: number): Observable<number> {
+    let user: User = JSON.parse(localStorage.getItem("user")?.toString() ?? "{}");
+    let model = { 
+      userId: user.id, 
+      feedId: id 
+    };
+    return this.http.post<number>(this.baseUrl + 'likePost/', model);
+  }
 }

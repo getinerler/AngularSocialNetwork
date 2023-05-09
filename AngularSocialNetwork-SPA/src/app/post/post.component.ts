@@ -20,4 +20,14 @@ export class PostComponent implements OnInit {
   getDetail(id: number) {
     this.router.navigate(['/postDetail', id]);
   }
+
+  likePost(id: number) {
+    this.postService.likePost(id).subscribe(
+      res => {
+        this.post.liked = !this.post.liked;
+        this.post.likeCount = res;
+      },
+      err => alert(JSON.stringify(err))
+    );
+  }
 }

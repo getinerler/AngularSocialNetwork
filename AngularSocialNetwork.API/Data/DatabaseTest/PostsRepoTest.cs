@@ -20,7 +20,7 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
 
                 select new PostForFeedDto()
                 {
-                    Id = post.PostId,
+                    Id = feed.FeedId,
                     UserId = post.UserId,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
@@ -51,7 +51,7 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                 .Where(x => x.PostId == post.PostId && x.UserId == feed.UserId)
                 .ToList();
 
-Console.WriteLine("count+ " + commentCounts.Count);
+            Console.WriteLine("count+ " + commentCounts.Count);
             List<PostForFeedDto> comments =
             (
                 from comment in DatabaseContextTest.Comments
@@ -63,7 +63,7 @@ Console.WriteLine("count+ " + commentCounts.Count);
 
                 select new PostForFeedDto()
                 {
-                    Id = comment.PostId,
+                    Id = feed.FeedId,
                     UserId = user.UserId,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
@@ -138,6 +138,33 @@ Console.WriteLine("count+ " + commentCounts.Count);
                 Liked = false
             };
             DatabaseContextTest.Feeds.Add(userFeed);
+        }
+
+        public int LikePost(PostLikeDto req)
+        {
+            Feed feed = DatabaseContextTest.Feeds.FirstOrDefault(x =>
+                x.FeedId == req.FeedId &&
+                x.UserId == req.UserId);
+
+            Post post = DatabaseContextTest.Posts.FirstOrDefault(x => x.PostId == feed.PostId);
+
+            if (feed == null)
+            {
+                throw new Exception("No feed found.");
+            }
+
+            if (feed.Liked)
+            {
+                post.LikeCount--;
+                feed.Liked = false;
+            }
+            else
+            {
+                post.LikeCount++;
+                feed.Liked = true;
+            }
+
+            return post.LikeCount;
         }
     }
 }
