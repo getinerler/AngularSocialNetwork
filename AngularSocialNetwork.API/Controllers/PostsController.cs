@@ -43,6 +43,29 @@ namespace AngularSocialNetwork.API.Controllers
             }
         }
 
+        [HttpPost("RepostPost")]
+        public IActionResult RepostPost([FromBody] PostLikeDto req)
+        {
+            try
+            {
+                if (!req.UserId.HasValue)
+                {
+                    throw new Exception("No user id.");
+                }
+
+                if (!req.FeedId.HasValue)
+                {
+                    throw new Exception("No feed id.");
+                }
+
+                return Ok(_postRepo.RepostPost(req));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("LikePost")]
         public IActionResult LikePost([FromBody] PostLikeDto req)
         {

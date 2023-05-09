@@ -13,6 +13,8 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                 from feed in DatabaseContextTest.Feeds
                 join post in DatabaseContextTest.Posts on feed.PostId equals post.PostId
                 join user in DatabaseContextTest.Users on post.UserId equals user.UserId
+                join repostUser in DatabaseContextTest.Users on feed.RepostedUserId equals repostUser.UserId into rue
+                from repostUser in rue.DefaultIfEmpty()
 
                 where userId == -1 || feed.UserId == userId
 
@@ -30,6 +32,9 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                     LikeCount = post.LikeCount,
                     RetweetCount = post.RetweetCount,
                     CommentCount = post.CommentCount,
+                    IsReposted = repostUser != null,
+                    RepostedFirstName = repostUser?.FirstName ?? string.Empty,
+                    RepostedLastName = repostUser?.LastName ?? string.Empty,
                     Date = post.CreatedDate,
                     Liked = feed.Liked,
                     Reposted = feed.Reposted
@@ -51,7 +56,6 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                 .Where(x => x.PostId == post.PostId && x.UserId == feed.UserId)
                 .ToList();
 
-            Console.WriteLine("count+ " + commentCounts.Count);
             List<PostForFeedDto> comments =
             (
                 from comment in DatabaseContextTest.Comments
@@ -158,7 +162,6 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                 throw new Exception("No post found.");
             }
 
-
             if (feed.Liked)
             {
                 post.LikeCount--;
@@ -171,6 +174,89 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
             }
 
             return post.LikeCount;
+        }
+
+        public int RepostPost(PostLikeDto req)
+        {
+            Feed feed = DatabaseContextTest.Feeds.FirstOrDefault(x =>
+                x.FeedId == req.FeedId &&
+                x.UserId == req.UserId);
+            if (feed == null)
+            {
+                throw new Exception("No feed found.");
+            }
+
+            Post post = DatabaseContextTest.Posts.FirstOrDefault(x => x.PostId == feed.PostId);
+            if (post == null)
+            {
+                throw new Exception("No post found.");
+            }
+
+
+            if (feed.Reposted)
+            {
+                post.RetweetCount--;
+
+                List<Feed> samePostFeeds = DatabaseContextTest.Feeds
+                    .Where(x => 
+                        x.PostId == feed.PostId && 
+                        x.UserId == req.UserId)
+                    .ToList();
+
+                foreach (Feed f in samePostFeeds)
+                {
+                    f.Reposted = false;
+                }
+
+                List<Feed> feedsToRemove = DatabaseContextTest.Feeds
+                    .Where(x =>
+                        x.PostId == post.PostId &&
+                        x.RepostedUserId == req.UserId)
+                    .ToList();
+
+                foreach (Feed feedToRemove in feedsToRemove)
+                {
+                    DatabaseContextTest.Feeds.Remove(feedToRemove);
+                }
+            }
+            else
+            {
+                post.RetweetCount++;
+
+                List<Feed> samePostFeeds = DatabaseContextTest.Feeds
+                    .Where(x => 
+                        x.PostId == feed.PostId && 
+                        x.UserId == req.UserId)
+                    .ToList();
+
+                foreach (Feed f in samePostFeeds)
+                {
+                    f.Reposted = true;
+                }
+
+                List<int> userFollowersIds = DatabaseContextTest.Followers
+                   .Where(x => x.FolloweeId == req.UserId)
+                   .Select(x => x.FollowerId)
+                   .ToList()
+                   //Add repost to user's feed too.
+                   .Union(new int[] { req.UserId.Value })
+                   .ToList();
+
+                foreach (int followerId in userFollowersIds)
+                {
+                    DatabaseContextTest.Feeds.Add(new Feed()
+                    {
+                        FeedId = DatabaseContextTest.Feeds.Max(x => x.FeedId) + 1,
+                        RepostedUserId = req.UserId.Value,
+                        UserId = followerId,
+                        PostId = post.PostId,
+                        Liked = false,
+                        Reposted = false
+                    });
+                }
+            }
+
+            return post.RetweetCount;
         }
     }
 }

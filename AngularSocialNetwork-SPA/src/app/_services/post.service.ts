@@ -42,4 +42,13 @@ export class PostService {
     };
     return this.http.post<number>(this.baseUrl + 'likePost/', model);
   }
+
+  repostPost(id: number): Observable<number> {
+    let user: User = JSON.parse(localStorage.getItem("user")?.toString() ?? "{}");
+    let model = { 
+      userId: user.id, 
+      feedId: id 
+    };
+    return this.http.post<number>(this.baseUrl + 'repostPost/', model);
+  }
 }

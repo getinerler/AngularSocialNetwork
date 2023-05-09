@@ -30,4 +30,14 @@ export class PostComponent implements OnInit {
       err => alert(JSON.stringify(err))
     );
   }
+
+  repostPost(id: number) {
+    this.postService.repostPost(id).subscribe(
+      res => {
+        this.post.reposted = !this.post.reposted;
+        this.post.retweetCount = res;
+      },
+      err => alert(JSON.stringify(err))
+    );
+  }
 }

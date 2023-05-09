@@ -58,5 +58,10 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
         {
             DatabaseContextTest.CommentCounts.AddRange(commentCounts);
         }
+
+        public List<Feed> GetPostFeeds(int postId)
+        {
+            return DatabaseContextTest.Feeds.Where(x => x.PostId == postId).ToList();
+        }
     }
 }

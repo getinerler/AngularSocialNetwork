@@ -8,5 +8,6 @@ namespace AngularSocialNetwork.API.Data
         PostForFeedDto GetPostDetailed(int feedId);
         void SaveNewPost(PostAddDto postAddDto);
         int LikePost(PostLikeDto req);
+        int RepostPost(PostLikeDto req);
     }
 }

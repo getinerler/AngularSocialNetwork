@@ -12,6 +12,9 @@ namespace AngularSocialNetwork.API.Dtos.Posts
         public int LikeCount { get; set; }
         public int RetweetCount { get; set; }
         public int CommentCount { get; set; }
+        public bool IsReposted { get; set; }
+        public string RepostedFirstName { get; set; }
+        public string RepostedLastName { get; set; }
         public DateTime Date { get; set; }
         public bool Liked { get; set; }
         public bool Reposted { get; set; }
