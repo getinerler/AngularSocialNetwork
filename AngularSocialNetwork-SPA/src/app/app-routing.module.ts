@@ -5,6 +5,7 @@ import { LoginComponent } from 'src/app/login/login.component';
 import { NotificationsComponent } from 'src/app/notifications/notifications.component';
 import { ProfileComponent } from 'src/app/profile/profile.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { FollowersComponent } from './followers/followers.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
     path: "postDetail/:id",
     component: PostDetailComponent
   },
+  {
+    path: "followers",
+    component: FollowersComponent
+  }
 ];
 
 @NgModule({

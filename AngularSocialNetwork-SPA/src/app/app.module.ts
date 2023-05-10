@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './post/post.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FollowersComponent } from './followers/followers.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ProfileComponent,
     HomeComponent,
     PostComponent,
-    PostDetailComponent
+    PostDetailComponent,
+    FollowersComponent
   ],
   imports: [
     BrowserModule,

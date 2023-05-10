@@ -10,6 +10,11 @@
     </div>
   </div>
 
+  <div class="follower-div">
+    <a [routerLink]="['/followers']">Follower: {{user.followerCount}}</a> &nbsp;
+    <a [routerLink]="['/followers']">Following: {{user.followingCount}}</a>
+  </div>
+
   <div class="postsContainer">
     <div>
       <a>Recent Posts</a> &nbsp;

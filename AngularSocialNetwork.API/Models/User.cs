@@ -14,6 +14,8 @@ namespace AngularSocialNetwork.API.Models
         public Guid ProfilePhoto { get; set; }
         public Guid HeaderPhoto { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public int FollowerCount { get; set; } = 0;
+        public int FollowingCount { get; set; } = 0;
         public bool IsActive { get; set; } = true;
     }
 }

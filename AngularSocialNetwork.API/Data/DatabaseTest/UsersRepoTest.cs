@@ -25,6 +25,8 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                 Link = user.ProfileLink,
                 Photo = UrlCreate.GetPhotoUrl(user.ProfilePhoto),
                 Date = user.CreatedDate,
+                FollowerCount = user.FollowerCount,
+                FollowingCount = user.FollowingCount
             };
 
             return userForProfile;
@@ -63,6 +65,50 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                 .ToList();
 
             return list;
+        }
+
+        public List<FollowerDto> GetFollowers(int userId)
+        {
+            List<FollowerDto> followers =
+            (
+                from follower in DatabaseContextTest.Followers
+                join user in DatabaseContextTest.Users on follower.FollowerId equals user.UserId
+
+                where follower.FolloweeId == userId
+
+                select new FollowerDto()
+                {
+                    Id = user.UserId,
+                    Username = user.Username,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Photo = UrlCreate.GetPhotoUrl(user.ProfilePhoto),
+                })
+            .ToList();
+
+            return followers;
+        }
+
+        public List<FollowerDto> GetFollowings(int userId)
+        {
+            List<FollowerDto> followers =
+            (
+                from follower in DatabaseContextTest.Followers
+                join user in DatabaseContextTest.Users on follower.FolloweeId equals user.UserId
+
+                where follower.FollowerId == userId
+
+                select new FollowerDto()
+                {
+                    Id = user.UserId,
+                    Username = user.Username,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Photo = UrlCreate.GetPhotoUrl(user.ProfilePhoto),
+                })
+            .ToList();
+
+            return followers;
         }
     }
 }

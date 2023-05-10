@@ -1,0 +1,28 @@
+followers
+
+<div *ngFor="let follower of followers">
+  <div class="post">
+    <div class="post-header">
+      <img src="{{follower.photo}}" alt="Profile Picture">
+  
+      <div>
+        <h4>{{follower.firstName}} {{follower.lastName}}</h4>
+        <h6 style="color:grey">@{{follower.username}}</h6>
+      </div>
+    </div>
+</div>
+
+
+followings 
+
+<div *ngFor="let follower of followings">
+  <div class="post">
+    <div class="post-header">
+      <img src="{{follower.photo}}" alt="Profile Picture">
+  
+      <div>
+        <h4>{{follower.firstName}} {{follower.lastName}}</h4>
+        <h6 style="color:grey">@{{follower.username}}</h6>
+      </div>
+    </div>
+</div>

@@ -10,6 +10,8 @@ namespace AngularSocialNetwork.API.Dtos.Users
         public string Bio { get; set; }
         public string Link { get; set; }
         public string Photo { get; set; }
+        public int FollowerCount { get; set; }
+        public int FollowingCount { get; set; }
         public DateTime Date { get; set; }
     }
 }

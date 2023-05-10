@@ -7,4 +7,6 @@ export interface UserDetail {
     link: string;
     photo: string;
     date: Date;
+    followerCount: number;
+    followingCount: number;
 }

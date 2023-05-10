@@ -20,6 +20,7 @@ namespace AngularSocialNetwork.API.Data
             {
                 SeedUsers();
                 SeedFollowers();
+                AdjustUserFollowCounts();
                 SeedPosts();
                 SeedFeeds();
                 AdjustPostLikes();
@@ -143,6 +144,22 @@ namespace AngularSocialNetwork.API.Data
             _repo.AddFollowers(followers);
         }
 
+
+        private void AdjustUserFollowCounts()
+        {
+            List<User> users = _repo.GetUsers();
+            List<Follower> followers = _repo.GetFollowers();
+
+            foreach (User user in users)
+            {
+                int following = followers.Where(x => x.FollowerId == user.UserId).Count();
+                int follower = followers.Where(x => x.FolloweeId == user.UserId).Count();
+
+                user.FollowerCount = follower;
+                user.FollowingCount = following;
+            }
+        }
+
         private void SeedPosts()
         {
             Random rnd = new Random();
@@ -262,7 +279,7 @@ namespace AngularSocialNetwork.API.Data
         {
             List<Post> posts = _repo.GetPosts();
 
-            foreach(Post post in posts)
+            foreach (Post post in posts)
             {
                 List<Feed> feeds = _repo.GetPostFeeds(post.PostId);
                 int likeCount = feeds.Where(x => x.Liked).Count();

@@ -41,10 +41,46 @@ namespace AngularSocialNetwork.API.Controllers
             {
                 if (!id.HasValue)
                 {
-                    throw new Exception("No userId.");
+                    throw new Exception("No user id.");
                 }
                 List<PostForFeedDto> postsForMainPageDto = _repo.GetUserPosts(id.Value);
                 return Ok(postsForMainPageDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetFollowers")]
+        public IActionResult GetFollowers(int? id)
+        {
+            try
+            {
+                if (!id.HasValue)
+                {
+                    throw new Exception("No user id.");
+                }
+                List<FollowerDto> followersDto = _repo.GetFollowers(id.Value);
+                return Ok(followersDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+         [HttpGet("GetFollowings")]
+        public IActionResult GetFollowings(int? id)
+        {
+            try
+            {
+                if (!id.HasValue)
+                {
+                    throw new Exception("No user id.");
+                }
+                List<FollowerDto> followersDto = _repo.GetFollowings(id.Value);
+                return Ok(followersDto);
             }
             catch (Exception ex)
             {

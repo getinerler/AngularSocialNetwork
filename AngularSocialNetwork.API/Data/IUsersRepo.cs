@@ -7,5 +7,7 @@ namespace AngularSocialNetwork.API.Data
     {
         UserForProfileDto GetProfileInfo(int userId);
         List<PostForFeedDto> GetUserPosts(int userId);
+        List<FollowerDto> GetFollowers(int userId);
+        List<FollowerDto> GetFollowings(int userId);
     }
 }
