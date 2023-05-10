@@ -1,10 +1,14 @@
 .post {
-    /* background-color: #F5F8FA;*/
-    border: 1px solid darkred;
-    border-radius: 5px;
+    border-bottom: 1px solid darkred;
     padding: 20px;
     margin-bottom: 20px;
-    width: 75%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.post.first {
+    border-top: 1px solid darkred;
+    background-color: red;
 }
 
 .post-header {
@@ -80,5 +84,10 @@
 
 .repost-div {
     font-size: 9px;
-    color:grey;
+    color: grey;
+}
+
+
+.reposted {
+    color: darkred;
 }

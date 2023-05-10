@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../_models/post';
 import { PostService } from '../_services/post.service';
 import { Router } from '@angular/router';
+import { faHeart as fasHeart, faRetweet } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-post',
@@ -9,6 +11,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+
+  faReweet = faRetweet;
+  faComment = faComment;
+  faHeart = faHeart;
+  fasHeart = fasHeart;
 
   @Input() post: Post = null!;
 

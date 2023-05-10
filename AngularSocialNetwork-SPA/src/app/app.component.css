@@ -8,9 +8,13 @@ nav {
     height: 100vh;
     position: sticky;
     top: 0px;
-    background-color: darkred;
-    color: white;
+    background-color: #fffafa;
     padding: 20px;
+}
+
+.navContainer {
+    background-color: red;
+    width:30%;
 }
 
 nav ul {
@@ -22,6 +26,11 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
     text-decoration: none;
+    color: darkred;
+}
+
+nav ul li a:active {
+    text-decoration: none;
+    color: darkred;
 }

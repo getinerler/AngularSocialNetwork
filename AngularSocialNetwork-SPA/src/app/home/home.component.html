@@ -9,9 +9,9 @@
     <button class="new-post-send-button" (click)="sendPost()">Submit</button>
   </div>
 
-  <div class="postsContainer">
+  <div class="posts-container">
     <div class="post" *ngFor="let message of messages">
-      <app-post [post]="message"></app-post>
+      <app-post [post]="message" ></app-post>
     </div>
   </div>
 </main>

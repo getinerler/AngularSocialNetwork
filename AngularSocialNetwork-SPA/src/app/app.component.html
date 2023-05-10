@@ -5,10 +5,18 @@
     </nav>
     <nav *ngIf="loggedIn()">
       <ul>
-        <li><a [routerLink]="['/']">Home</a></li>
-        <li><a [routerLink]="['/profile']">Profile</a></li>
-        <li><a [routerLink]="['/notifications']">Notifications</a></li>
-        <a (click)="logout()">Log Out</a>
+        <li>
+          <a [routerLink]="['/']"><fa-icon [icon]="faHome"></fa-icon>Home</a>
+        </li>
+        <li>
+          <a [routerLink]="['/profile']"> <fa-icon [icon]="faUser"></fa-icon> Profile</a>
+        </li>
+        <li>
+          <a [routerLink]="['/notifications']"><fa-icon [icon]="faBell"></fa-icon> Notifications</a>
+        </li>
+        <li>
+          <a (click)="logout()"><fa-icon [icon]="faRightFromBracket"></fa-icon> Log Out</a>
+        </li>
       </ul>
     </nav>
   </div>

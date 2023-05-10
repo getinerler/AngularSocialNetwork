@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './_services/auth.service';
+import { faHome, faUser, faBell, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,13 @@ import { AuthService } from './_services/auth.service';
 
 export class AppComponent {
 
+  faHome = faHome;
+  faUser = faUser;
+  faBell = faBell;
+  faRightFromBracket = faRightFromBracket;
+
   constructor(private router: Router, private authService: AuthService) { }
+
 
   loggedIn() {
     const token = localStorage.getItem('token');
