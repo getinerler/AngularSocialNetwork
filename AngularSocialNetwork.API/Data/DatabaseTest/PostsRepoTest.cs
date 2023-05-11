@@ -23,6 +23,7 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                 select new PostForFeedDto()
                 {
                     Id = feed.FeedId,
+                    PostId = feed.PostId,
                     UserId = post.UserId,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
@@ -68,6 +69,7 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                 select new PostForFeedDto()
                 {
                     Id = feed.FeedId,
+                    PostId = feed.PostId,
                     UserId = user.UserId,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
@@ -198,8 +200,8 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                 post.RetweetCount--;
 
                 List<Feed> samePostFeeds = DatabaseContextTest.Feeds
-                    .Where(x => 
-                        x.PostId == feed.PostId && 
+                    .Where(x =>
+                        x.PostId == feed.PostId &&
                         x.UserId == req.UserId)
                     .ToList();
 
@@ -224,8 +226,8 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                 post.RetweetCount++;
 
                 List<Feed> samePostFeeds = DatabaseContextTest.Feeds
-                    .Where(x => 
-                        x.PostId == feed.PostId && 
+                    .Where(x =>
+                        x.PostId == feed.PostId &&
                         x.UserId == req.UserId)
                     .ToList();
 
@@ -257,6 +259,12 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
             }
 
             return post.RetweetCount;
+        }
+
+        public void DeletePost(int postId)
+        {
+            Post post = DatabaseContextTest.Posts.FirstOrDefault(x => x.PostId == postId);
+            DatabaseContextTest.Posts.Remove(post);
         }
     }
 }

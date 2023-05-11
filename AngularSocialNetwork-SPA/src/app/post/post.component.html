@@ -2,12 +2,17 @@
   <div class="repost-div" *ngIf="post.isReposted">
     <fa-icon [icon]="faReweet"></fa-icon> by {{post.repostedFirstName}} {{post.repostedLastName}}
   </div>
-  <div class="post-header">
-    <img src="{{post.photo}}" alt="Profile Picture">
 
+  <div class="post-header">
     <div>
-      <h4>{{post.firstName}} {{post.lastName}}</h4>
-      <h6 style="color:grey">@{{post.username}}</h6>
+      <img src="{{post.photo}}" alt="Profile Picture">
+      <div>
+        <h4>{{post.firstName}} {{post.lastName}}</h4>
+        <h6 style="color:grey">@{{post.username}}</h6>
+      </div>
+    </div>
+    <div (click)="deletePost(post.postId)">
+      <fa-icon [icon]="faTrashCan"></fa-icon>
     </div>
   </div>
 

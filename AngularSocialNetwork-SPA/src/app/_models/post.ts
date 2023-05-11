@@ -1,5 +1,6 @@
 export interface Post {
   id: number;
+  postId: number;
   username: string;
   firstName: string;
   lastName: string;
@@ -15,5 +16,7 @@ export interface Post {
   liked: boolean;
   reposted: boolean;
 
+  ownPost: boolean;
+  
   comments: Post[];
 }

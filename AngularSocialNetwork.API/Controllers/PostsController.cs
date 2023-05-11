@@ -102,5 +102,23 @@ namespace AngularSocialNetwork.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete]
+        public IActionResult DeletePost(int? id)
+        {
+            try
+            {
+                if (!id.HasValue)
+                {
+                    throw new Exception("No post id.");
+                }
+                _postRepo.DeletePost(id.Value);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

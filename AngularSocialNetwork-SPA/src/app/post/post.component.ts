@@ -3,7 +3,7 @@ import { Post } from '../_models/post';
 import { PostService } from '../_services/post.service';
 import { Router } from '@angular/router';
 import { faHeart as fasHeart, faRetweet } from '@fortawesome/free-solid-svg-icons';
-import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
+import { faHeart, faComment, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-post',
@@ -16,6 +16,7 @@ export class PostComponent implements OnInit {
   faComment = faComment;
   faHeart = faHeart;
   fasHeart = fasHeart;
+  faTrashCan = faTrashCan;
 
   @Input() post: Post = null!;
 
@@ -45,6 +46,13 @@ export class PostComponent implements OnInit {
         this.post.retweetCount = res;
       },
       err => alert(JSON.stringify(err))
+    );
+  }
+
+  deletePost(id: number){
+    this.postService.deletePost(id).subscribe(
+      res => {},
+      err => { alert(JSON.stringify(err));}
     );
   }
 }

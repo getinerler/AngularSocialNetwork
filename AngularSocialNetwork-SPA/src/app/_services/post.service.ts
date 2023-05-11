@@ -51,4 +51,8 @@ export class PostService {
     };
     return this.http.post<number>(this.baseUrl + 'repostPost/', model);
   }
+
+  deletePost(id: number): Observable<any> {
+    return this.http.delete(this.baseUrl + "?id=" + id);
+  }
 }
