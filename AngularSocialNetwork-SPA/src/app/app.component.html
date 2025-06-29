@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="navContainer">
+  <div *ngIf="showNav()" class="navContainer">
     <nav *ngIf="!loggedIn()">
       <a [routerLink]="['/login']">Log In</a>
     </nav>

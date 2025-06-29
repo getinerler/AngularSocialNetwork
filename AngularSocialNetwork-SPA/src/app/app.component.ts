@@ -16,8 +16,13 @@ export class AppComponent {
   faBell = faBell;
   faRightFromBracket = faRightFromBracket;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) { 
 
+  }
+
+  showNav() {
+    return location.pathname.indexOf('/login') === -1;
+  }
 
   loggedIn() {
     const token = localStorage.getItem('token');
