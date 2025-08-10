@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post" (click)="getDetail(post.id)">
   <div class="repost-div" *ngIf="post.isReposted">
     <fa-icon [icon]="faReweet"></fa-icon> by {{post.repostedFirstName}} {{post.repostedLastName}}
   </div>
@@ -11,7 +11,7 @@
         <h6 style="color:grey">@{{post.username}}</h6>
       </div>
     </div>
-    <div (click)="deletePost(post.postId)">
+    <div (click)="deletePost($event, post.postId)">
       <fa-icon [icon]="faTrashCan"></fa-icon>
     </div>
   </div>
@@ -22,21 +22,21 @@
   <div class="post-counts">
 
     <div class="post-counts-item">
-      <span (click)="getDetail(post.id)">
+      <span>
         <fa-icon [icon]="faComment"></fa-icon>
         {{post.commentCount}}
       </span>
     </div>
 
     <div class="post-counts-item">
-      <span (click)="repostPost(post.id)" [ngClass]="{reposted:post.reposted}">
+      <span (click)="repostPost($event, post.id)" [ngClass]="{reposted:post.reposted}">
         <fa-icon [icon]="faReweet"></fa-icon>
         {{post.retweetCount}}
       </span>
     </div>
 
     <div class="post-counts-item">
-      <span (click)="likePost(post.id)"  [ngClass]="{reposted:post.liked}">
+      <span (click)="likePost($event, post.id)"  [ngClass]="{reposted:post.liked}">
         <fa-icon [icon]="faHeart" *ngIf="!post.liked"></fa-icon>
         <fa-icon [icon]="fasHeart" *ngIf="post.liked"></fa-icon>
         {{post.likeCount}}
@@ -69,14 +69,14 @@
         </div>
 
         <div class="post-counts-item">
-          <span (click)="repostPost(post.id)" [ngClass]="{reposted:post.reposted}">
+          <span (click)="repostPost($event, post.id)" [ngClass]="{reposted:post.reposted}">
             <fa-icon [icon]="faReweet"></fa-icon>
             {{post.retweetCount}}
           </span>
         </div>
     
         <div class="post-counts-item">
-          <span (click)="likePost(post.id)"  [ngClass]="{reposted:post.liked}">
+          <span (click)="likePost($event, post.id)"  [ngClass]="{reposted:post.liked}">
             <fa-icon [icon]="faHeart" *ngIf="!post.liked"></fa-icon>
             <fa-icon [icon]="fasHeart" *ngIf="post.liked"></fa-icon>
             {{post.likeCount}}
@@ -85,3 +85,4 @@
       </div>
     </div>
   </div>
+</div> 

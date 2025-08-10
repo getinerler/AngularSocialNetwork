@@ -29,7 +29,8 @@ export class PostComponent implements OnInit {
     this.router.navigate(['/postDetail', id]);
   }
 
-  likePost(id: number) {
+  likePost(event: MouseEvent, id: number) {
+    event.stopPropagation();
     this.postService.likePost(id).subscribe(
       res => {
         this.post.liked = !this.post.liked;
@@ -39,7 +40,8 @@ export class PostComponent implements OnInit {
     );
   }
 
-  repostPost(id: number) {
+  repostPost(event: MouseEvent, id: number) {
+    event.stopPropagation();
     this.postService.repostPost(id).subscribe(
       res => {
         this.post.reposted = !this.post.reposted;
@@ -49,7 +51,8 @@ export class PostComponent implements OnInit {
     );
   }
 
-  deletePost(id: number){
+  deletePost(event: MouseEvent, id: number){
+    event.stopPropagation();
     this.postService.deletePost(id).subscribe(
       res => {},
       err => { alert(JSON.stringify(err));}
