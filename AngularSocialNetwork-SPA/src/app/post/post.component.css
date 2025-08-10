@@ -1,5 +1,5 @@
 .post {
-    border-bottom: 1px solid darkred;
+    border-bottom: 0.5px solid rgb(235, 220, 220);
     padding: 20px;
     margin-bottom: 20px;
     width: 100%;
@@ -42,11 +42,8 @@
     margin-right: 20px;
 }
 
-
-
 .comment {
-    /* background-color: #F5F8FA;*/
-    border-bottom: 1px solid darkred;
+    border-bottom: 1px solid rgb(235, 220, 220);
     padding: 20px;
     margin-bottom: 20px;
     width: 75%;
@@ -82,12 +79,10 @@
     margin-right: 20px;
 }
 
-
 .repost-div {
     font-size: 9px;
     color: grey;
 }
-
 
 .reposted {
     color: darkred;

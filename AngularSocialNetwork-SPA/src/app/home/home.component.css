@@ -1,13 +1,15 @@
 main {
-    flex-grow: 1;
-    padding: 20px;
+    width: 70%;
+    border: 0.2px solid rgb(235, 220, 220);
 }
 
 .new-post {
-    border-radius: 5px;
     padding: 20px;
     margin-bottom: 20px;
-    width: 75%;
+    border-bottom: 0.2px solid rgb(235, 220, 220);
+    display: flex;
+    justify-content:space-around; 
+    gap: 30px;
 }
 
 .new-post-header {
@@ -19,7 +21,7 @@ main {
 .new-post-img {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 5px;
     margin-right: 10px;
 }
 
@@ -37,6 +39,7 @@ main {
 
 .new-post-send-button {
     width: 100px;
+    height: 50px;
     position:relative;
     right:10px;
     padding: 10px;
@@ -50,13 +53,11 @@ main {
 
 
 .new-post-send-input {
-    width: 100%;
+    width: 500px;
     height: 50px;
 }
 
 
 .posts-container {
-    width:80%;
-    border-left: 1px solid darkred;
-    border-right: 1px solid darkred;
+    overflow-y: auto;
 }

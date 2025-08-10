@@ -1,17 +1,15 @@
-<main>
-  <div [formGroup]="newPostForm" (submit)="sendPost" class="new-post">
-    <div class="new-post-header">
-      <img class="new-post-img" src="{{profilePhotoUrl}}" alt="Profile Picture">
+<div [formGroup]="newPostForm" (submit)="sendPost()" class="new-post">
+  <div class="new-post-header">
+    <img class="new-post-img" src="{{profilePhotoUrl}}" alt="Profile Picture">
 
-      <input type="text" formControlName="newPostText" class="new-post-send-input" placeholder="Write something...">
+    <input type="text" formControlName="newPostText" class="new-post-send-input" placeholder="Write something...">
 
-    </div>
-    <button class="new-post-send-button" (click)="sendPost()">Submit</button>
   </div>
+  <button class="new-post-send-button" (click)="sendPost()">Submit</button>
+</div>
 
-  <div class="posts-container">
-    <div class="post" *ngFor="let message of messages">
-      <app-post [post]="message" ></app-post>
-    </div>
+<div class="posts-container">
+  <div class="post" *ngFor="let message of messages">
+    <app-post [post]="message" ></app-post>
   </div>
-</main>
+</div>

@@ -1,28 +1,25 @@
+<div class="profile">
+  <div>
+    <img src="{{user.photo}}" alt="Profile Picture">
+    <h3>{{user.firstName}} {{user.lastName}}</h3>
+    <h6 style="color:grey">@{{user.username}}</h6>
+  </div>
+  <div style="padding:15px">
+    <p>{{user.bio}}</p>
+  </div> 
+</div>
+
 <div class="container">
-  <div class="profile">
-    <div>
-      <img src="{{user.photo}}" alt="Profile Picture">
-      <h3>{{user.firstName}} {{user.lastName}}</h3>
-      <h6 style="color:grey">@{{user.username}}</h6>
-    </div>
-    <div style="padding:15px">
-      <p>{{user.bio}}</p>
-    </div>
+  <a [routerLink]="['/followers']">Follower: {{user.followerCount}}</a> &nbsp;
+  <a [routerLink]="['/followers']">Following: {{user.followingCount}}</a>
+</div>
+
+<div class="container" style="height:10px">
+  <div>
+    <a>Recent Posts</a> &nbsp;
   </div>
+</div>
 
-  <div class="follower-div">
-    <a [routerLink]="['/followers']">Follower: {{user.followerCount}}</a> &nbsp;
-    <a [routerLink]="['/followers']">Following: {{user.followingCount}}</a>
-  </div>
-
-  <div class="postsContainer">
-    <div>
-      <a>Recent Posts</a> &nbsp;
-    </div>
-
-    <div *ngFor="let message of posts">
-      <app-post [post]="message"></app-post>
-    </div>
-
-  </div>
+<div *ngFor="let message of posts">
+  <app-post [post]="message"></app-post>
 </div>

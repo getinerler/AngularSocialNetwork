@@ -6,19 +6,33 @@
     <nav *ngIf="loggedIn()">
       <ul>
         <li>
-          <a [routerLink]="['/']"><fa-icon [icon]="faHome"></fa-icon>Home</a>
+          <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link">
+            <span class="icon"><fa-icon [icon]="faHome"></fa-icon></span>
+            <span class="text">Home</span>
+          </a>
         </li>
         <li>
-          <a [routerLink]="['/profile']"> <fa-icon [icon]="faUser"></fa-icon> Profile</a>
+          <a [routerLink]="['/profile']" routerLinkActive="active" class="nav-link"> 
+            <span class="icon"><fa-icon [icon]="faUser"></fa-icon></span>
+            <span class="text">Profile</span>
+          </a>
         </li>
         <li>
-          <a [routerLink]="['/notifications']"><fa-icon [icon]="faBell"></fa-icon> Notifications</a>
+          <a [routerLink]="['/notifications']" routerLinkActive="active" class="nav-link">
+            <span class="icon"><fa-icon [icon]="faBell"></fa-icon></span>
+            <span class="text">Notifications</span>
+          </a>
         </li>
         <li>
-          <a (click)="logout()"><fa-icon [icon]="faRightFromBracket"></fa-icon> Log Out</a>
+          <a (click)="logout()" routerLinkActive="active" class="nav-link">
+            <span class="icon"><fa-icon [icon]="faRightFromBracket"></fa-icon></span>
+            <span class="text">Log Out</span>
+          </a>
         </li>
       </ul>
     </nav>
   </div>
-  <router-outlet></router-outlet>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
 </div>
