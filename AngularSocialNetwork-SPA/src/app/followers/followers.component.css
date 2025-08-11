@@ -1,9 +1,10 @@
 .post {
-    border-bottom: 1px solid darkred;
+    border-bottom: 0.5px solid rgb(235, 220, 220);
     padding: 20px;
     margin-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
+    cursor:pointer;
 }
 
 .post.first {

@@ -40,6 +40,11 @@ export class PostComponent implements OnInit {
     );
   }
 
+  getProfile(event: MouseEvent, id: number) {
+    event.stopPropagation();
+    this.router.navigate(['/profile/', id]);
+  }
+
   repostPost(event: MouseEvent, id: number) {
     event.stopPropagation();
     this.postService.repostPost(id).subscribe(

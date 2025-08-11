@@ -17,23 +17,20 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUserDetails(): Observable<UserDetail> {
-    let user: User = JSON.parse(localStorage.getItem("user")?.toString() ?? "{}");
-    return this.http.get<UserDetail>(this.baseUrl + "users/getProfileInfo?id=" + user.id);
+  getUserDetails(id: number): Observable<UserDetail> {
+    //let user: User = JSON.parse(localStorage.getItem("user")?.toString() ?? "{}");
+    return this.http.get<UserDetail>(this.baseUrl + "users/getProfileInfo?id=" + id);
   }
 
-  getUserPosts(): Observable<Post[]> {
-    let user: User = JSON.parse(localStorage.getItem("user")?.toString() ?? "{}");
-    return this.http.get<Post[]>(this.baseUrl + "users/getposts?id=" + user.id);
+  getUserPosts(id:number): Observable<Post[]> {
+    return this.http.get<Post[]>(this.baseUrl + "users/getposts?id=" + id);
   }
 
-  getFollowers(): Observable<Follower[]> {
-    let user: User = JSON.parse(localStorage.getItem("user")?.toString() ?? "{}");
-    return this.http.get<Follower[]>(this.baseUrl + "users/getFollowers?id=" + user.id);
+  getFollowers(id: number): Observable<Follower[]> {
+    return this.http.get<Follower[]>(this.baseUrl + "users/getFollowers?id=" + id);
   }
 
-  getFollowings(): Observable<Follower[]> {
-    let user: User = JSON.parse(localStorage.getItem("user")?.toString() ?? "{}");
-    return this.http.get<Follower[]>(this.baseUrl + "users/getFollowings?id=" + user.id);
+  getFollowings(id: number): Observable<Follower[]> {
+    return this.http.get<Follower[]>(this.baseUrl + "users/getFollowings?id=" + id);
   }
 }

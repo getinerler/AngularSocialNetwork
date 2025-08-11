@@ -10,8 +10,8 @@
 </div>
 
 <div class="container">
-  <a [routerLink]="['/followers']">Follower: {{user.followerCount}}</a> &nbsp;
-  <a [routerLink]="['/followers']">Following: {{user.followingCount}}</a>
+  <a [routerLink]="['/followers/' + user.id]">Follower: {{user.followerCount}}</a> &nbsp;
+  <a [routerLink]="['/followers/' + user.id]">Following: {{user.followingCount}}</a>
 </div>
 
 <div class="container" style="height:10px">

@@ -17,6 +17,7 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
 
             UserForProfileDto userForProfile = new UserForProfileDto()
             {
+                Id = user.UserId,
                 Username = user.Username,
                 FirstName = user.FirstName,
                 LastName = user.LastName,

@@ -21,7 +21,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'profile',
+    path: 'profile/:id',
     component: ProfileComponent
   },
   {
@@ -33,7 +33,7 @@ const routes: Routes = [
     component: PostDetailComponent
   },
   {
-    path: "followers",
+    path: "followers/:id",
     component: FollowersComponent
   }
 ];

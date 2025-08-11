@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
 import { UserDetail } from '../_models/userDetail';
 import { Post } from '../_models/post';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -11,18 +12,22 @@ import { Post } from '../_models/post';
 
 export class ProfileComponent implements OnInit {
 
+  userId: number = -1;
   user: UserDetail = null!;
   posts: Post[] = [];
 
-  constructor(private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
-    this.getUserDetails();
-    this.getUserPosts();
+    this.route.paramMap.subscribe(params => {
+      this.userId = Number(params.get('id')!);
+      this.getUserDetails(this.userId);
+      this.getUserPosts(this.userId);
+    });
   }
 
-  getUserDetails() {
-    this.userService.getUserDetails().subscribe(
+  getUserDetails(userId: number) {
+    this.userService.getUserDetails(this.userId).subscribe(
       res => {
         this.user = res;
       },
@@ -32,8 +37,8 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  getUserPosts() {
-    this.userService.getUserPosts().subscribe(
+  getUserPosts(userId: number) {
+    this.userService.getUserPosts(userId).subscribe(
       res => {
         this.posts = res;
       },

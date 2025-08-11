@@ -1,11 +1,11 @@
-<div class="post" (click)="getDetail(post.id)">
+<div class="post" (click)="getDetail(post.userId)">
   <div class="repost-div" *ngIf="post.isReposted">
     <fa-icon [icon]="faReweet"></fa-icon> by {{post.repostedFirstName}} {{post.repostedLastName}}
   </div>
 
   <div class="post-header">
     <div>
-      <img src="{{post.photo}}" alt="Profile Picture">
+      <a (click)="getProfile($event, post.userId)"><img src="{{post.photo}}" alt="Profile Picture"></a>
       <div>
         <h4>{{post.firstName}} {{post.lastName}}</h4>
         <h6 style="color:grey">@{{post.username}}</h6>
@@ -62,21 +62,21 @@
       <div class="comment-counts">
 
         <div class="post-counts-item">
-          <span (click)="getDetail(post.id)">
+          <span (click)="getDetail(post.userId)">
             <fa-icon [icon]="faComment"></fa-icon>
             {{post.commentCount}}
           </span>
         </div>
 
         <div class="post-counts-item">
-          <span (click)="repostPost($event, post.id)" [ngClass]="{reposted:post.reposted}">
+          <span (click)="repostPost($event, post.userId)" [ngClass]="{reposted:post.reposted}">
             <fa-icon [icon]="faReweet"></fa-icon>
             {{post.retweetCount}}
           </span>
         </div>
     
         <div class="post-counts-item">
-          <span (click)="likePost($event, post.id)"  [ngClass]="{reposted:post.liked}">
+          <span (click)="likePost($event, post.userId)"  [ngClass]="{reposted:post.liked}">
             <fa-icon [icon]="faHeart" *ngIf="!post.liked"></fa-icon>
             <fa-icon [icon]="fasHeart" *ngIf="post.liked"></fa-icon>
             {{post.likeCount}}

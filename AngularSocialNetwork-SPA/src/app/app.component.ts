@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './_services/auth.service';
 import { faHome, faUser, faBell, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { User } from './_models/user';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +12,19 @@ import { faHome, faUser, faBell, faRightFromBracket } from '@fortawesome/free-so
 
 export class AppComponent {
 
+  id: number = -1;
   faHome = faHome;
   faUser = faUser;
   faBell = faBell;
   faRightFromBracket = faRightFromBracket;
 
-  constructor(private router: Router, private authService: AuthService) { 
+  constructor( private router: Router, private authService: AuthService) { 
 
+  }
+
+  ngOnInit(){
+    let user: User = JSON.parse(localStorage.getItem("user")?.toString() ?? "{}");
+    this.id = user.id;
   }
 
   showNav() {
