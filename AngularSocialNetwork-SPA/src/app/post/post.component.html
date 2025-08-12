@@ -4,12 +4,13 @@
   </div>
 
   <div class="post-header">
-    <div>
+    <div style="display:flex">
       <a (click)="getProfile($event, post.userId)"><img src="{{post.photo}}" alt="Profile Picture"></a>
-      <div>
-        <h4>{{post.firstName}} {{post.lastName}}</h4>
-        <h6 style="color:grey">@{{post.username}}</h6>
-      </div>
+      <h4>{{post.firstName}} {{post.lastName}}
+        <span style="font-size:18px;color:grey">@{{post.username}}</span>
+        <span style="font-size:16px;color:grey">&nbsp;&nbsp;{{post.date | date:'dd/MM/yyyy hh:mm'}}</span>
+        
+      </h4>
     </div>
     <div (click)="deletePost($event, post.postId)">
       <fa-icon [icon]="faTrashCan"></fa-icon>
@@ -17,7 +18,7 @@
   </div>
 
   <div class="post-content">
-    <p>{{post.text}}</p>
+    <p [innerHTML]="post.text| hashtag"></p>
   </div>
   <div class="post-counts">
 

@@ -13,6 +13,7 @@ import { PostComponent } from './post/post.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FollowersComponent } from './followers/followers.component';
+import { HashtagPipe } from './_pipes/tagpipe';
 
 
 @NgModule({
@@ -24,7 +25,9 @@ import { FollowersComponent } from './followers/followers.component';
     HomeComponent,
     PostComponent,
     PostDetailComponent,
-    FollowersComponent
+    FollowersComponent,
+
+    HashtagPipe
   ],
   imports: [
     BrowserModule,

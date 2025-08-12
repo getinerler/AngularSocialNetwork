@@ -1,19 +1,14 @@
 .post {
     border-bottom: 0.5px solid rgb(235, 220, 220);
     padding: 20px;
-    margin-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
     cursor:pointer;
+    font-size: 18px;
 }
 
 .post:hover{
     background-color: rgb(243, 243, 243);
-}
-
-.post.first {
-    border-top: 1px solid darkred;
-    background-color: red;
 }
 
 .post-header {
@@ -31,7 +26,6 @@
 
 .post-content {
     margin-top: 10px;
-    font-size: 16px;
 }
 
 .post-counts {
@@ -95,4 +89,8 @@
 
 .reposted {
     color: darkred;
+}
+
+tag {
+    color: blue;
 }
