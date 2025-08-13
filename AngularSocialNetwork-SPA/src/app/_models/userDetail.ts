@@ -10,4 +10,5 @@ export interface UserDetail {
     date: Date;
     followerCount: number;
     followingCount: number;
+    following: boolean;
 }

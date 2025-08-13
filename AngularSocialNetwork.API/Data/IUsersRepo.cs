@@ -5,9 +5,10 @@ namespace AngularSocialNetwork.API.Data
 {
     public interface IUsersRepo
     {
-        UserForProfileDto GetProfileInfo(int userId);
-        List<PostForFeedDto> GetUserPosts(int userId);
-        List<FollowerDto> GetFollowers(int userId);
-        List<FollowerDto> GetFollowings(int userId);
+        UserForProfileDto GetProfileInfo(int id, int? userId);
+        List<PostForFeedDto> GetUserPosts(int id);
+        List<FollowerDto> GetFollowers(int id);
+        List<FollowerDto> GetFollowings(int id);
+        void Follow(int id, int userId, bool follow);
     }
 }

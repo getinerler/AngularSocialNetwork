@@ -17,7 +17,7 @@ namespace AngularSocialNetwork.API.Controllers
         }
 
         [HttpGet("GetProfileInfo")]
-        public IActionResult GetProfileInfo(int? id)
+        public IActionResult GetProfileInfo(int? id, int? userId)
         {
             try
             {
@@ -25,7 +25,7 @@ namespace AngularSocialNetwork.API.Controllers
                 {
                     throw new Exception("No userId.");
                 }
-                UserForProfileDto userForProfile = _repo.GetProfileInfo(id.Value);
+                UserForProfileDto userForProfile = _repo.GetProfileInfo(id.Value, userId);
                 return Ok(userForProfile);
             }
             catch (Exception ex)
@@ -70,7 +70,7 @@ namespace AngularSocialNetwork.API.Controllers
             }
         }
 
-         [HttpGet("GetFollowings")]
+        [HttpGet("GetFollowings")]
         public IActionResult GetFollowings(int? id)
         {
             try
@@ -81,6 +81,28 @@ namespace AngularSocialNetwork.API.Controllers
                 }
                 List<FollowerDto> followersDto = _repo.GetFollowings(id.Value);
                 return Ok(followersDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("Follow")]
+        public IActionResult Follow(int? id, int? userId, bool follow = false)
+        {
+            try
+            {
+                if (!id.HasValue)
+                {
+                    throw new Exception("No id.");
+                }
+                else if (!userId.HasValue)
+                {
+                    throw new Exception("No user id.");
+                }
+                _repo.Follow(id.Value, userId.Value, follow);
+                return Ok();
             }
             catch (Exception ex)
             {

@@ -13,5 +13,6 @@ namespace AngularSocialNetwork.API.Dtos.Users
         public int FollowerCount { get; set; }
         public int FollowingCount { get; set; }
         public DateTime Date { get; set; }
+        public bool Following { get; set; }
     }
 }

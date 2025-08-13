@@ -7,6 +7,14 @@
   <div style="padding:15px">
     <p>{{user.bio}}</p>
   </div> 
+
+  <div *ngIf ="isUsersPage">
+    <button>Settings</button>
+  </div>
+   <div *ngIf ="!isUsersPage">
+    <button *ngIf ="user.following" (click)="changeFollow()">{{followButtonLabel}}</button>
+    <button *ngIf ="!user.following" (click)="changeFollow()">{{followButtonLabel}}</button>
+  </div>
 </div>
 
 <div class="container">
