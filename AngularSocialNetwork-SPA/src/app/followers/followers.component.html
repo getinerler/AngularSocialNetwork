@@ -3,10 +3,17 @@
 
 <div class="post" *ngFor="let follower of followers">
   <div class="post-header">
-    <img src="{{follower.photo}}" alt="Profile Picture">
+    <div class="post-left">
+      <a href="/profile/{{follower.id}}">
+        <img src="{{follower.photo}}" alt="Profile Picture"> 
+        <h4>{{follower.firstName}} {{follower.lastName}}</h4>
+        <h6 style="color:grey">@{{follower.username}}</h6>
+      </a>
+    </div>
     <div>
-      <h4>{{follower.firstName}} {{follower.lastName}}</h4>
-      <h6 style="color:grey">@{{follower.username}}</h6>
+      <button (click)="follow(follower)" [ngClass]="follower.following ? 'followButton active': 'followButton'">
+        {{follower.following ? "Following" : "Follow"}}
+      </button>
     </div>
   </div>
 </div>
@@ -16,10 +23,17 @@
 
 <div class="post" *ngFor="let follower of followings">
   <div class="post-header">
-    <img src="{{follower.photo}}" alt="Profile Picture">
-    <div>
-      <h4>{{follower.firstName}} {{follower.lastName}}</h4>
-      <h6 style="color:grey">@{{follower.username}}</h6>
+    <div class="post-left">
+      <a href="/profile/{{follower.id}}">
+        <img src="{{follower.photo}}" alt="Profile Picture">
+        <h4>{{follower.firstName}} {{follower.lastName}}</h4>
+        <h6 style="color:grey">@{{follower.username}}</h6>
+      </a>
+    </div>
+     <div>
+      <button (click)="follow(follower)" [ngClass]="follower.following ? 'followButton active': 'followButton'">
+        {{follower.following ? "Following" : "Follow"}}
+      </button>
     </div>
   </div>
 </div>

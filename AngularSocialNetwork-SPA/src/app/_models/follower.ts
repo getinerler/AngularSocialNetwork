@@ -4,4 +4,5 @@ export interface Follower {
     firstName?: string;
     lastName?: string;
     photo?: string;
+    following: boolean;
 }

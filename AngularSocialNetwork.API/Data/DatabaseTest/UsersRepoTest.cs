@@ -94,6 +94,8 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Photo = UrlCreate.GetPhotoUrl(user.ProfilePhoto),
+                    Following = DatabaseContextTest
+                        .Followers.Any(x => x.FollowerId == id && x.FolloweeId == user.UserId)
                 })
             .ToList();
 
@@ -116,6 +118,7 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Photo = UrlCreate.GetPhotoUrl(user.ProfilePhoto),
+                    Following = true
                 })
             .ToList();
 
@@ -133,11 +136,23 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                     FollowerId = id,
                     FolloweeId = userId
                 };
-                DatabaseContextTest.Followers.Add(newFollower);          
+                DatabaseContextTest.Followers.Add(newFollower);
+
+                User followerUser = DatabaseContextTest.Users.FirstOrDefault(x => x.UserId == id);
+                followerUser.FollowingCount++;
+
+                User followingUser = DatabaseContextTest.Users.FirstOrDefault(x => x.UserId == userId);
+                followingUser.FollowerCount++;
             }
             else if (!follow && follower != null)
             {
                 DatabaseContextTest.Followers.Remove(follower);
+                
+                User followerUser = DatabaseContextTest.Users.FirstOrDefault(x => x.UserId == id);
+                followerUser.FollowingCount--;   
+
+                User followingUser = DatabaseContextTest.Users.FirstOrDefault(x => x.UserId == userId);
+                followingUser.FollowerCount--;  
             }
         }
     }
