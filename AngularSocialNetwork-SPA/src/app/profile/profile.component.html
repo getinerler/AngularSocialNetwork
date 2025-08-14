@@ -18,16 +18,19 @@
 </div>
 
 <div class="container">
-  <a [routerLink]="['/followers/' + user.id]">Follower: {{user.followerCount}}</a> &nbsp;
-  <a [routerLink]="['/followers/' + user.id]">Following: {{user.followingCount}}</a>
+  <a [routerLink]="['/followers/' + user.id]"><b>{{user.followerCount}}</b> follower</a> &nbsp;
+  <a [routerLink]="['/followers/' + user.id]"><b>{{user.followingCount}}</b> following</a>
 </div>
 
+<br>
 <div class="container" style="height:10px">
   <div>
-    <a>Recent Posts</a> &nbsp;
+    <a><b>Posts</b></a> &nbsp;
+    <a>Likes</a> &nbsp;
   </div>
 </div>
 
+<br>
 <div *ngFor="let message of posts">
   <app-post [post]="message"></app-post>
 </div>
