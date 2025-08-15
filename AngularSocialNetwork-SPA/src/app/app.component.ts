@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './_services/auth.service';
 import { faHome, faUser, faBell, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { User } from './_models/user';
+import { RealtimeService } from './_services/realtime.service';
 
 @Component({
   selector: 'app-root',
@@ -18,13 +19,22 @@ export class AppComponent {
   faBell = faBell;
   faRightFromBracket = faRightFromBracket;
 
-  constructor( private router: Router, private authService: AuthService) { 
+  constructor(
+    private router: Router, 
+    private authService: AuthService,
+    private realtime: RealtimeService) { 
 
   }
 
   ngOnInit(){
     let user: User = JSON.parse(localStorage.getItem("user")?.toString() ?? "{}");
     this.id = user.id;
+    this.realtime.startConnection();
+    this.realtime.notifications$.subscribe(data => {
+      if (data) {
+        alert("horray");
+      }
+    });
   }
 
   showNav() {

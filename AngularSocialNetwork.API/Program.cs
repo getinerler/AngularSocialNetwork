@@ -1,5 +1,6 @@
 using AngularSocialNetwork.API.Data;
 using AngularSocialNetwork.API.Data.DatabaseTest;
+using AngularSocialNetwork.API.Hubs;
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,7 @@ builder.Services.AddTransient<IUsersRepo, UsersRepoTest>();
 
 builder.Services.BuildServiceProvider().GetService<Seed>().SeedAll();
 
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -41,8 +43,15 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseCors(x => x
+    .WithOrigins("http://localhost:4200/")
+    .AllowAnyHeader()
+    .SetIsOriginAllowed((host) => true)
+    .AllowAnyMethod()
+    .AllowCredentials());
+
 app.MapControllers();
 
-app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+app.MapHub<AngularHub>("/hub");
 
 app.Run();
