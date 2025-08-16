@@ -26,7 +26,6 @@ namespace AngularSocialNetwork.API.Hubs
 
         public override async Task OnDisconnectedAsync(Exception ex)
         {
-            Console.WriteLine(Context.ConnectionId);
             await base.OnDisconnectedAsync(ex);
         }
     }

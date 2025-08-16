@@ -1,11 +1,13 @@
 using AngularSocialNetwork.API.Data;
 using AngularSocialNetwork.API.Dtos.Notifications;
 using AngularSocialNetwork.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AngularSocialNetwork.API.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class NotificationsController : ControllerBase
     {

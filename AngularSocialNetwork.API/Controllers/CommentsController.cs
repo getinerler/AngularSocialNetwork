@@ -1,9 +1,11 @@
 using AngularSocialNetwork.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AngularSocialNetwork.API.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class CommentsController : Controller
     {
