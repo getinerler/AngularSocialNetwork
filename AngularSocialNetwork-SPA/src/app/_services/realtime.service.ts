@@ -38,13 +38,9 @@ export class RealtimeService {
   }
 
   private registerHandlers() {
-    this.hubConnection.on('NewNotification', (data) => {
+    this.hubConnection.on('NewNotification', (data: number) => {
       this.notificationSubject.next(data);
     });
-
-    // this.hubConnection.on('NewMessage', (data) => {
-    //   this.messageSubject.next(data);
-    // });
   }
 
   // sendMessage(chatId: string, message: string) {

@@ -4,6 +4,7 @@ import { AuthService } from './_services/auth.service';
 import { faHome, faUser, faBell, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { User } from './_models/user';
 import { RealtimeService } from './_services/realtime.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent {
   faUser = faUser;
   faBell = faBell;
   faRightFromBracket = faRightFromBracket;
+  notificationCount: number = 0;
 
   constructor(
     private router: Router, 
@@ -30,12 +32,12 @@ export class AppComponent {
     let user: User = JSON.parse(localStorage.getItem("user")?.toString() ?? "{}");
     this.id = user.id;
     this.realtime.startConnection();
-    this.realtime.notifications$.subscribe(data => {
-      if (data) {
-        alert("horray");
+    this.realtime.notifications$
+      .pipe(filter(n => n !== null))
+      .subscribe(data => {
+          this.notificationCount++;
+        });
       }
-    });
-  }
 
   showNav() {
     return location.pathname.indexOf('/login') === -1;

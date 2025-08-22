@@ -148,7 +148,7 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
             DatabaseContextTest.Feeds.Add(userFeed);
         }
 
-        public int LikePost(PostLikeDto req)
+        public PostLikeResultDto LikePost(PostLikeDto req)
         {
             Feed feed = DatabaseContextTest.Feeds.FirstOrDefault(x =>
                 x.FeedId == req.FeedId &&
@@ -175,7 +175,12 @@ namespace AngularSocialNetwork.API.Data.DatabaseTest
                 feed.Liked = true;
             }
 
-            return post.LikeCount;
+            return  new PostLikeResultDto()
+            { 
+                LikeCount = post.LikeCount,
+                PostUserId = post.UserId,
+                Liked = feed.Liked
+            };
         }
 
         public int RepostPost(PostLikeDto req)

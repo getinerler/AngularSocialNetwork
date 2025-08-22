@@ -25,6 +25,7 @@ nav ul {
 }
 
 nav ul li {
+    position: relative;
     margin-left:10%;
     margin-bottom: 10px;
     font-size: 25px;
@@ -50,4 +51,22 @@ nav ul li a.active {
   align-items: center;
   gap: 1rem; /* space between icon and text */
     transition: background-color 0.2s;
+}
+
+.badge {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  min-width: 1.2rem;
+  height: 1.2rem;
+                /* grows for 2+ digits */
+  border-radius: 999px;
+  background: #e11d48;                /* rose-600-ish */
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 700;
+  line-height: 1.2rem;
+  text-align: center;
+  box-shadow: 0 0 0 2px #fff;         /* ring to separate from icon */
+  pointer-events: none;
 }

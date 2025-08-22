@@ -5,22 +5,33 @@ namespace AngularSocialNetwork.API.Hubs
 {
     public class AngularHub : Hub<IAngularClient>
     {
-        public Hashtable UserConnectionIds { get; set; } = new Hashtable{ };
+        public static Hashtable UserConnectionIds { get; set; } = new Hashtable{ };
         public AngularHub()
         {
 
         }
-        
+
         public async Task SendMessage(int userId, int number)
         {
-            string connectionId = UserConnectionIds[userId.ToString()].ToString();
-            await Clients.User(connectionId).NewNotification(number);
+            string connectionId = UserConnectionIds[userId].ToString();
+            if (connectionId == null)
+            {
+                return;
+            }
+            await Clients.All.NewNotification(number);
         }
         
         public override async Task OnConnectedAsync()
         {
             int userId = Convert.ToInt32(Context.GetHttpContext().Request?.Query["userId"]);
-            UserConnectionIds.Add(userId, Context.ConnectionId);
+            if (UserConnectionIds.ContainsKey(userId))
+            {
+                UserConnectionIds[userId] = Context.ConnectionId;
+            }
+            else
+            {
+                UserConnectionIds.Add(userId, Context.ConnectionId);
+            }
             await base.OnConnectedAsync();
         }
 

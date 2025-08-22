@@ -1,6 +1,9 @@
 using AngularSocialNetwork.API.Data;
 using AngularSocialNetwork.API.Dtos.Posts;
+using AngularSocialNetwork.API.Hubs;
+using AngularSocialNetwork.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace AngularSocialNetwork.API.Controllers
 {
@@ -9,10 +12,12 @@ namespace AngularSocialNetwork.API.Controllers
     public class PostsController : ControllerBase
     {
         private readonly IPostsRepo _postRepo;
+        private readonly IHubContext<AngularHub> _client;
 
-        public PostsController(IPostsRepo postRepo)
+        public PostsController(IPostsRepo postRepo, IHubContext<AngularHub> client)
         {
             _postRepo = postRepo;
+            _client = client;
         }
 
         [HttpGet]
@@ -67,7 +72,7 @@ namespace AngularSocialNetwork.API.Controllers
         }
 
         [HttpPost("LikePost")]
-        public IActionResult LikePost([FromBody] PostLikeDto req)
+        public async Task<IActionResult> LikePost([FromBody] PostLikeDto req)
         {
             try
             {
@@ -81,7 +86,15 @@ namespace AngularSocialNetwork.API.Controllers
                     throw new Exception("No feed id.");
                 }
 
-                return Ok(_postRepo.LikePost(req));
+                PostLikeResultDto res = _postRepo.LikePost(req);
+
+                if (res.Liked)
+                {
+                    string connId = AngularHub.UserConnectionIds[res.PostUserId]?.ToString();
+                    await _client.Clients.Client(connId).SendAsync("NewNotification", 2);
+                    Console.WriteLine("not: " + connId);
+                }
+                return Ok();
             }
             catch (Exception ex)
             {

@@ -19,6 +19,10 @@
         </li>
         <li>
           <a [routerLink]="['/notifications']" routerLinkActive="active" class="nav-link">
+            <span *ngIf="notificationCount > 0" class="badge"
+              [attr.aria-label]="notificationCount + ' unread notifications'">
+              {{ notificationCount > 99 ? '99+' : notificationCount }}
+            </span>
             <span class="icon"><fa-icon [icon]="faBell"></fa-icon></span>
             <span class="text">Notifications</span>
           </a>
